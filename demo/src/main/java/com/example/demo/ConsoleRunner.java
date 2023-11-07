@@ -1,10 +1,9 @@
 package com.example.demo;
 
-import com.example.demo.DataInitializer.DataInitializer;
 import com.example.demo.EntityClasses.Restaurant;
 import com.example.demo.EntityClasses.Worker;
-import com.example.demo.Service.RestaurantService;
-import com.example.demo.Service.WorkerService;
+import com.example.demo.ServiceImpl.RestaurantServiceImpl;
+import com.example.demo.ServiceImpl.WorkerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -54,10 +53,10 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
     @Autowired
-    private RestaurantService restaurantService;
+    private RestaurantServiceImpl restaurantService;
 
     @Autowired
-    private WorkerService workerService;
+    private WorkerServiceImpl workerService;
 
     public void displayMenu() {
 

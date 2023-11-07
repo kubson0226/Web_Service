@@ -5,7 +5,7 @@ import com.example.demo.Dto.GET.GetRestaurantsResponse;
 import com.example.demo.Dto.PATCH.PatchRestaurantRequest;
 import com.example.demo.Dto.PUT.PutRestaurantRequest;
 import com.example.demo.EntityClasses.Restaurant;
-import com.example.demo.Service.RestaurantService;
+import com.example.demo.ServiceImpl.RestaurantServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +17,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/restaurants")
 public class RestaurantController {
-    private RestaurantService restaurantService;
+    private RestaurantServiceImpl restaurantService;
 
     @Autowired
-    public RestaurantController(RestaurantService restaurantService) {
+    public RestaurantController(RestaurantServiceImpl restaurantService) {
         this.restaurantService = restaurantService;
     }
 

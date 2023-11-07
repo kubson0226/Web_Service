@@ -1,14 +1,11 @@
 package com.example.demo.Controllers;
 
-import com.example.demo.Dto.GET.GetRestaurantsResponse;
 import com.example.demo.Dto.GET.GetWorkersResponse;
 import com.example.demo.Dto.GET.WorkerDto;
 import com.example.demo.Dto.PATCH.PatchWorkerRequest;
 import com.example.demo.Dto.PUT.PutWorkerRequest;
-import com.example.demo.EntityClasses.Restaurant;
 import com.example.demo.EntityClasses.Worker;
-import com.example.demo.Repositories.WorkerRepository;
-import com.example.demo.Service.WorkerService;
+import com.example.demo.ServiceImpl.WorkerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +17,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/workers")
 public class WorkerController {
-    private WorkerService workerService;
+    private WorkerServiceImpl workerService;
 
     @Autowired
-    public WorkerController(WorkerService workerService) {
+    public WorkerController(WorkerServiceImpl workerService) {
         this.workerService = workerService;
     }
 

@@ -2,8 +2,8 @@ package com.example.demo.DataInitializer;
 
 import com.example.demo.EntityClasses.Restaurant;
 import com.example.demo.EntityClasses.Worker;
-import com.example.demo.Service.RestaurantService;
-import com.example.demo.Service.WorkerService;
+import com.example.demo.ServiceImpl.RestaurantServiceImpl;
+import com.example.demo.ServiceImpl.WorkerServiceImpl;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,11 +12,11 @@ import java.util.UUID;
 
 @Component
 public class DataInitializer {
-    private final RestaurantService restaurantService;
-    private final WorkerService workerService;
+    private final RestaurantServiceImpl restaurantService;
+    private final WorkerServiceImpl workerService;
 
     @Autowired
-    public DataInitializer(RestaurantService restaurantService, WorkerService workerService) {
+    public DataInitializer(RestaurantServiceImpl restaurantService, WorkerServiceImpl workerService) {
         this.restaurantService = restaurantService;
         this.workerService = workerService;
     }
