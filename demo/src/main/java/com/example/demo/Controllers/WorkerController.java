@@ -31,6 +31,13 @@ public class WorkerController {
         return new ResponseEntity<>(convertedWorkers, HttpStatus.OK);
     }
 
+    @GetMapping("/restaurant")
+    public ResponseEntity<List<GetWorkersResponse>> getWorkersFromRestaurant(@RequestParam String restaurantName) {
+        List<Worker> workers = workerService.getWorkersByRestaurant(restaurantName);
+        List<GetWorkersResponse> convertedWorkers = workerService.convertToDtoList(workers);
+        return new ResponseEntity<>(convertedWorkers, HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<WorkerDto> getSpecificWorker(@PathVariable UUID id) {
         Worker worker = workerService.getWorkerById(id);
