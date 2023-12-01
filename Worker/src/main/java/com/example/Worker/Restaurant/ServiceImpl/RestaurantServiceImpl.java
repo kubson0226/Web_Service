@@ -27,7 +27,6 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant newRestaurant = Restaurant.builder().build();
         newRestaurant.setID(UUID.fromString("2d9b1e8c-67c5-4188-a911-5f064a63d8cd"));
         newRestaurant.setName(restaurantRequest.getName());
-        newRestaurant.setNumberOfSits(restaurantRequest.getNumberOfSits());
 
         return restaurantRepository.save(newRestaurant);
     }
@@ -52,7 +51,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         convertedRestaurant.setId(restaurant.getID());
         convertedRestaurant.setName(restaurant.getName());
-        convertedRestaurant.setNumberOfSits(restaurant.getNumberOfSits());
 
         return convertedRestaurant;
     }

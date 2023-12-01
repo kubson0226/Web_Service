@@ -25,9 +25,6 @@ public class Restaurant implements Serializable{
     @Column(name = "restaurant_name")
     private String name;
 
-    @Column
-    private int numberOfSits;
-
     @OneToMany(mappedBy = "restaurant")
     private List<Worker> workers;
 }
