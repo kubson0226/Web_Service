@@ -13,4 +13,5 @@ public interface RestaurantService {
     boolean deleteRestaurantRequest(UUID id);
     Restaurant createRestaurantRequest(PutRestaurantRequest restaurantRequest);
     RestaurantDto convertToDto(Restaurant restaurant);
+    Restaurant getRestaurantByID(UUID id);
 }

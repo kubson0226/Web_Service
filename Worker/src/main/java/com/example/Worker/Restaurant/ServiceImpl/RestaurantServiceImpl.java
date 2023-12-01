@@ -19,6 +19,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         this.restaurantRepository = restaurantRepository;
     }
 
+    public Restaurant getRestaurantByID(UUID restaurant_ID) {
+        return restaurantRepository.findById(restaurant_ID).orElse(null);
+    }
+
     public Restaurant createRestaurantRequest(PutRestaurantRequest restaurantRequest) {
         Restaurant newRestaurant = Restaurant.builder().build();
         newRestaurant.setID(UUID.fromString("2d9b1e8c-67c5-4188-a911-5f064a63d8cd"));
