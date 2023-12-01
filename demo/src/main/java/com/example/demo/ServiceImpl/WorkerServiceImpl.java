@@ -29,8 +29,8 @@ public class WorkerServiceImpl implements WorkerService {
         this.restaurantRepository = restaurantRepository;
     }
 
-    public Optional<Worker> getWorkersByRestaurant(Restaurant restaurant) {
-        return workerRepository.getWorkerByRestaurant(restaurant);
+    public List<Worker> getWorkersByRestaurant(String name) {
+        return workerRepository.getWorkerByRestaurant(name);
     }
 
     public List<Worker> getAllWorkers() {

@@ -7,14 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface WorkerRepository extends JpaRepository<Worker, UUID> {
-    @Query("select worker from Worker worker where worker.restaurant = :restaurant")
-    Optional<Worker> getWorkerByRestaurant(
-            @Param("restaurant") Restaurant restaurant
+    @Query("select worker from Worker worker where worker.restaurant.name = :restaurant_name")
+    List<Worker> getWorkerByRestaurant(
+            @Param("restaurant_name") String name
     );
 
 }

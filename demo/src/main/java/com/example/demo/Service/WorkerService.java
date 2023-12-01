@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface WorkerService {
-    Optional<Worker> getWorkersByRestaurant(Restaurant restaurant);
+    List<Worker> getWorkersByRestaurant(String name);
     List<Worker> getAllWorkers();
     void saveWorker(Worker worker);
     void deleteWorker(Worker worker);
