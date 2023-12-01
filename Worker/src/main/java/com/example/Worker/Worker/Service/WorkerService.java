@@ -14,6 +14,7 @@ import java.util.UUID;
 public interface WorkerService {
 
     List<Worker> getAllWorkers();
+    List<Worker> getWorkersByRestaurant(String name);
     void saveWorker(Worker worker);
     void deleteWorker(Worker worker);
     Worker getWorkerById(UUID worker_ID);

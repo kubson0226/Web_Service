@@ -31,6 +31,10 @@ public class WorkerServiceImpl implements WorkerService {
         return workerRepository.findAll();
     }
 
+    public List<Worker> getWorkersByRestaurant(String name) {
+        return workerRepository.getWorkerByRestaurant(name);
+    }
+
     public void saveWorker(Worker worker) {
         workerRepository.save(worker);
     }
