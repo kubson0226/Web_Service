@@ -86,7 +86,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .map(restaurant -> {
                     GetRestaurantsResponse newRestaurant = new GetRestaurantsResponse();
                     newRestaurant.setName(restaurant.getName());
-                    newRestaurant.setId(restaurant.getID());
+                    newRestaurant.setId(restaurant.getID().toString());
                     return newRestaurant;
                 })
                 .collect(Collectors.toList());

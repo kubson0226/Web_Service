@@ -14,7 +14,7 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class GetRestaurantsResponse {
 
-    private UUID id;
+    private String id;
 
     private String name;
 
