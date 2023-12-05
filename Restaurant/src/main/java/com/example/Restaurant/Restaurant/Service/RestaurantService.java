@@ -1,6 +1,7 @@
 package com.example.Restaurant.Restaurant.Service;
 
 import com.example.Restaurant.Restaurant.Dto.GET.GetRestaurantsResponse;
+import com.example.Restaurant.Restaurant.Dto.GET.RestaurantDetails;
 import com.example.Restaurant.Restaurant.Dto.GET.RestaurantDto;
 import com.example.Restaurant.Restaurant.Dto.PATCH.PatchRestaurantRequest;
 import com.example.Restaurant.Restaurant.Dto.PUT.PutRestaurantRequest;
@@ -19,8 +20,8 @@ public interface RestaurantService {
     Restaurant createRestaurantRequest(PutRestaurantRequest restaurantRequest);
     Restaurant patchRestaurantRequest(UUID id, PatchRestaurantRequest restaurantRequest);
     boolean deleteRestaurantRequest(UUID id);
-    RestaurantDto convertToDto(Restaurant restaurant);
-    List<GetRestaurantsResponse> convertToDtoList(List<Restaurant> restaurants);
+    RestaurantDetails convertToDto(Restaurant restaurant);
+    GetRestaurantsResponse convertToDtoList(List<Restaurant> restaurants);
 
     Restaurant getRestaurantByName(String name);
 

@@ -1,6 +1,7 @@
 package com.example.Restaurant.Restaurant.ServiceImpl;
 
 import com.example.Restaurant.Restaurant.Dto.GET.GetRestaurantsResponse;
+import com.example.Restaurant.Restaurant.Dto.GET.RestaurantDetails;
 import com.example.Restaurant.Restaurant.Dto.GET.RestaurantDto;
 import com.example.Restaurant.Restaurant.Dto.PATCH.PatchRestaurantRequest;
 import com.example.Restaurant.Restaurant.Dto.PUT.PutRestaurantRequest;
@@ -70,9 +71,9 @@ public class RestaurantServiceImpl implements RestaurantService {
         return false;
     }
 
-    public RestaurantDto convertToDto(Restaurant restaurant) {
+    public RestaurantDetails convertToDto(Restaurant restaurant) {
 
-        RestaurantDto convertedRestaurant = new RestaurantDto();
+        RestaurantDetails convertedRestaurant = new RestaurantDetails();
 
         convertedRestaurant.setId(restaurant.getID());
         convertedRestaurant.setName(restaurant.getName());
@@ -81,15 +82,12 @@ public class RestaurantServiceImpl implements RestaurantService {
         return convertedRestaurant;
     }
 
-    public List<GetRestaurantsResponse> convertToDtoList(List<Restaurant> restaurants) {
-        return restaurants.stream()
-                .map(restaurant -> {
-                    GetRestaurantsResponse newRestaurant = new GetRestaurantsResponse();
-                    newRestaurant.setName(restaurant.getName());
-                    newRestaurant.setId(restaurant.getID().toString());
-                    return newRestaurant;
-                })
-                .collect(Collectors.toList());
+    public GetRestaurantsResponse convertToDtoList(List<Restaurant> restaurants) {
+        return GetRestaurantsResponse.builder().restaurants(
+                restaurants.stream().map(restaurant ->
+                        RestaurantDto.builder()
+                                .id(restaurant.getID().toString())
+                                .name(restaurant.getName()).build()).toList()).build();
     }
 
     public Restaurant getRestaurantByName(String name) {

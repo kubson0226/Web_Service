@@ -1,6 +1,7 @@
 package com.example.Restaurant.Restaurant.Controller;
 
 import com.example.Restaurant.Restaurant.Dto.GET.GetRestaurantsResponse;
+import com.example.Restaurant.Restaurant.Dto.GET.RestaurantDetails;
 import com.example.Restaurant.Restaurant.Dto.GET.RestaurantDto;
 import com.example.Restaurant.Restaurant.Dto.PATCH.PatchRestaurantRequest;
 import com.example.Restaurant.Restaurant.Dto.PUT.PutRestaurantRequest;
@@ -27,17 +28,17 @@ public class RestaurantController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GetRestaurantsResponse>> getAllRestaurants() {
+    public ResponseEntity<GetRestaurantsResponse> getAllRestaurants() {
         List<Restaurant> restaurants = restaurantService.retrieveAllRestaurants();
-        List<GetRestaurantsResponse> convertedRestaurants = restaurantService.convertToDtoList(restaurants);
+        GetRestaurantsResponse convertedRestaurants = restaurantService.convertToDtoList(restaurants);
         return new ResponseEntity<>(convertedRestaurants, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RestaurantDto> getSpecificRestaurant(@PathVariable UUID id) {
+    public ResponseEntity<RestaurantDetails> getSpecificRestaurant(@PathVariable UUID id) {
         Restaurant existingRestaurant = restaurantService.getRestaurantByID(id);
         if(existingRestaurant != null){
-            RestaurantDto convertedRestaurant = restaurantService.convertToDto(existingRestaurant);
+            RestaurantDetails convertedRestaurant = restaurantService.convertToDto(existingRestaurant);
             return new ResponseEntity<>(convertedRestaurant, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -45,19 +46,19 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public ResponseEntity<RestaurantDto> createRestaurant(@RequestBody PutRestaurantRequest restaurantRequest) {
+    public ResponseEntity<RestaurantDetails> createRestaurant(@RequestBody PutRestaurantRequest restaurantRequest) {
         Restaurant restaurant = restaurantService.createRestaurantRequest(restaurantRequest);
-        RestaurantDto convertedRestaurant = restaurantService.convertToDto(restaurant);
+        RestaurantDetails convertedRestaurant = restaurantService.convertToDto(restaurant);
         return new ResponseEntity<>(convertedRestaurant, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<RestaurantDto> updateRestaurant(@PathVariable UUID id, @RequestBody PatchRestaurantRequest restaurantRequest) {
+    public ResponseEntity<RestaurantDetails> updateRestaurant(@PathVariable UUID id, @RequestBody PatchRestaurantRequest restaurantRequest) {
         Restaurant restaurant = restaurantService.patchRestaurantRequest(id, restaurantRequest);
         if(restaurant == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            RestaurantDto convertedRestaurant = restaurantService.convertToDto(restaurant);
+            RestaurantDetails convertedRestaurant = restaurantService.convertToDto(restaurant);
             return new ResponseEntity<>(convertedRestaurant, HttpStatus.ACCEPTED);
         }
     }

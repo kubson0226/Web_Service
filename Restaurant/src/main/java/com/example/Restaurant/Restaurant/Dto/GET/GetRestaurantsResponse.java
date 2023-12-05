@@ -3,6 +3,7 @@ package com.example.Restaurant.Restaurant.Dto.GET;
 
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,8 +15,6 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class GetRestaurantsResponse {
 
-    private String id;
-
-    private String name;
+    private List<RestaurantDto> restaurants;
 
 }

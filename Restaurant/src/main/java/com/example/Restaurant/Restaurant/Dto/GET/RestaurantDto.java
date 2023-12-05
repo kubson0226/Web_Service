@@ -13,9 +13,8 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class RestaurantDto {
 
-    private UUID id;
+    private String id;
 
     private String name;
 
-    private int numberOfSits;
 }
