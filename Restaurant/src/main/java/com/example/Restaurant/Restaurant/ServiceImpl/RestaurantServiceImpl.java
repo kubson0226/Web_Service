@@ -86,7 +86,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         return GetRestaurantsResponse.builder().restaurants(
                 restaurants.stream().map(restaurant ->
                         RestaurantDto.builder()
-                                .id(restaurant.getID().toString())
+                                .id(restaurant.getID())
                                 .name(restaurant.getName()).build()).toList()).build();
     }
 

@@ -1,6 +1,7 @@
 package com.example.Worker.Worker.Controller;
 
 import com.example.Worker.Worker.Dto.GET.GetWorkersResponse;
+import com.example.Worker.Worker.Dto.GET.WorkerDetails;
 import com.example.Worker.Worker.Dto.GET.WorkerDto;
 import com.example.Worker.Worker.Dto.PATCH.PatchWorkerRequest;
 import com.example.Worker.Worker.Dto.PUT.PutWorkerRequest;
@@ -25,48 +26,48 @@ public class WorkerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GetWorkersResponse>> getAllWorkers() {
+    public ResponseEntity<GetWorkersResponse> getAllWorkers() {
         List<Worker> workers = workerService.getAllWorkers();
-        List<GetWorkersResponse> convertedWorkers = workerService.convertToDtoList(workers);
+        GetWorkersResponse convertedWorkers = workerService.convertToDtoList(workers);
         return new ResponseEntity<>(convertedWorkers, HttpStatus.OK);
     }
 
     @GetMapping("/restaurant")
-    public ResponseEntity<List<GetWorkersResponse>> getWorkersFromRestaurant(@RequestParam String restaurantName) {
+    public ResponseEntity<GetWorkersResponse> getWorkersFromRestaurant(@RequestParam String restaurantName) {
         List<Worker> workers = workerService.getWorkersByRestaurant(restaurantName);
-        List<GetWorkersResponse> convertedWorkers = workerService.convertToDtoList(workers);
+        GetWorkersResponse convertedWorkers = workerService.convertToDtoList(workers);
         return new ResponseEntity<>(convertedWorkers, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<WorkerDto> getSpecificWorker(@PathVariable UUID id) {
+    public ResponseEntity<WorkerDetails> getSpecificWorker(@PathVariable UUID id) {
         Worker worker = workerService.getWorkerById(id);
         if(worker == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            WorkerDto convertedWorker = workerService.convertToDto(worker);
+            WorkerDetails convertedWorker = workerService.convertToDto(worker);
             return new ResponseEntity<>(convertedWorker, HttpStatus.OK);
         }
     }
 
     @PostMapping
-    public ResponseEntity<WorkerDto> createWorker(@RequestBody PutWorkerRequest workerRequest, @RequestParam UUID restaurantID) {
+    public ResponseEntity<WorkerDetails> createWorker(@RequestBody PutWorkerRequest workerRequest, @RequestParam UUID restaurantID) {
         Worker worker = workerService.createWorkerRequest(workerRequest, restaurantID);
         if (worker == null) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         } else {
-            WorkerDto convertedWorker = workerService.convertToDto(worker);
+            WorkerDetails convertedWorker = workerService.convertToDto(worker);
             return new ResponseEntity<>(convertedWorker, HttpStatus.CREATED);
         }
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<WorkerDto> updateWorker(@PathVariable UUID id, @RequestBody PatchWorkerRequest workerRequest) {
+    public ResponseEntity<WorkerDetails> updateWorker(@PathVariable UUID id, @RequestBody PatchWorkerRequest workerRequest) {
         Worker worker = workerService.patchWorkerRequest(id, workerRequest);
         if(worker == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            WorkerDto convertedWorker = workerService.convertToDto(worker);
+            WorkerDetails convertedWorker = workerService.convertToDto(worker);
             return new ResponseEntity<>(convertedWorker, HttpStatus.ACCEPTED);
         }
     }

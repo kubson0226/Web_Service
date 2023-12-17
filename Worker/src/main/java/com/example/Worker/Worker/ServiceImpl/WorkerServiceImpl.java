@@ -2,6 +2,7 @@ package com.example.Worker.Worker.ServiceImpl;
 
 import com.example.Worker.Restaurant.Repository.RestaurantRepository;
 import com.example.Worker.Worker.Dto.GET.GetWorkersResponse;
+import com.example.Worker.Worker.Dto.GET.WorkerDetails;
 import com.example.Worker.Worker.Dto.GET.WorkerDto;
 import com.example.Worker.Worker.Dto.PATCH.PatchWorkerRequest;
 import com.example.Worker.Worker.Dto.PUT.PutWorkerRequest;
@@ -85,9 +86,9 @@ public class WorkerServiceImpl implements WorkerService {
 
     }
 
-    public WorkerDto convertToDto(Worker worker) {
+    public WorkerDetails convertToDto(Worker worker) {
 
-        WorkerDto convertedWorker = new WorkerDto();
+        WorkerDetails convertedWorker = new WorkerDetails();
         convertedWorker.setID(worker.getID());
         convertedWorker.setName(worker.getName());
         convertedWorker.setAge(worker.getAge());
@@ -96,14 +97,11 @@ public class WorkerServiceImpl implements WorkerService {
 
     }
 
-    public List<GetWorkersResponse> convertToDtoList(List<Worker> workers) {
-        return workers.stream()
-                .map(worker -> {
-                    GetWorkersResponse newWorker = new GetWorkersResponse();
-                    newWorker.setName(worker.getName());
-                    newWorker.setId(worker.getID());
-                    return newWorker;
-                })
-                .collect(Collectors.toList());
+    public GetWorkersResponse convertToDtoList(List<Worker> workers) {
+        return GetWorkersResponse.builder().workers(
+                workers.stream().map(worker ->
+                        WorkerDto.builder()
+                                .ID(worker.getID())
+                                .name(worker.getName()).build()).toList()).build();
     }
 }

@@ -11,11 +11,14 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class WorkerDto {
+public class WorkerDetails {
 
     private UUID ID;
 
     private String name;
 
+    private int age;
+
+    private String restaurantName;
 }
 

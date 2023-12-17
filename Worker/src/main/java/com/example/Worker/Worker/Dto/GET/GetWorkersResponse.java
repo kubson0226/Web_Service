@@ -2,6 +2,7 @@ package com.example.Worker.Worker.Dto.GET;
 
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -13,8 +14,5 @@ import java.util.UUID;
 @EqualsAndHashCode
 public class GetWorkersResponse {
 
-    private UUID id;
-
-    private String name;
-
+    List<WorkerDto> workers;
 }

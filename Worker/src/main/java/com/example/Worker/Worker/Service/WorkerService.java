@@ -1,6 +1,7 @@
 package com.example.Worker.Worker.Service;
 
 import com.example.Worker.Worker.Dto.GET.GetWorkersResponse;
+import com.example.Worker.Worker.Dto.GET.WorkerDetails;
 import com.example.Worker.Worker.Dto.GET.WorkerDto;
 import com.example.Worker.Worker.Dto.PATCH.PatchWorkerRequest;
 import com.example.Worker.Worker.Dto.PUT.PutWorkerRequest;
@@ -21,6 +22,6 @@ public interface WorkerService {
     Worker createWorkerRequest(PutWorkerRequest workerRequest, UUID restaurantID);
     Worker patchWorkerRequest(UUID id, PatchWorkerRequest workerRequest);
     boolean deleteWorkerRequest(UUID id);
-    WorkerDto convertToDto(Worker worker);
-    List<GetWorkersResponse> convertToDtoList(List<Worker> workers);
+    WorkerDetails convertToDto(Worker worker);
+    GetWorkersResponse convertToDtoList(List<Worker> workers);
 }
