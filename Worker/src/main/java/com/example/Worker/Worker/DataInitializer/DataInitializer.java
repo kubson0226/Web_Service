@@ -24,7 +24,7 @@ public class DataInitializer {
     public void initializeData() {
         try {
             Restaurant restaurant1 = Restaurant.builder().ID(UUID.fromString("f5875513-bf7b-4ae1-b8a5-5b70a1b90e76")).name("KFC").build();
-            Restaurant restaurant2 = Restaurant.builder().ID(UUID.fromString("5d1da2ae-6a14-4b6d-8b4f-d117867118d4")).name("McDonald").build();
+            Restaurant restaurant2 = Restaurant.builder().ID(UUID.fromString("5d1da2ae-6a14-4b6d-8b4f-d117867118d4")).name("McDonald's").build();
 
             restaurantService.saveRestaurant(restaurant1);
             restaurantService.saveRestaurant(restaurant2);
