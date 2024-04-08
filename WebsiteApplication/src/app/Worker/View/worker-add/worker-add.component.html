@@ -1,0 +1,32 @@
+<article>
+  <header><h2>Add Worker</h2></header>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit()" class="container">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name:</label>
+          <input [(ngModel)]="worker.name" id="name" name="name" required/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="age">Age:</label>
+          <input [(ngModel)]="worker.age" id="age" name="age" required type="number"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row-submit">
+      <div class="col-2 p-2">
+        <button type="submit">Add</button>
+      </div>
+      <div class="col-2 p-2">
+        <button (click)="form.resetForm()" type="button">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>

@@ -1,0 +1,26 @@
+<article class="text--justified">
+  <header><h2>Restaurants</h2></header>
+  <button [routerLink]="['/restaurants', 'add']" class="add-button">Add new Restaurant</button>
+  <br>
+  <br>
+  <table *ngIf="restaurants">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let restaurant of restaurants.restaurants" class="restaurant-row">
+      <td class="restaurant-name">{{restaurant.name}}</td>
+      <td><a [routerLink]="['/restaurants', restaurant.id]">View</a></td>
+      <td><a [routerLink]="['/restaurants', restaurant.id, 'edit']" class="action-link">Edit</a></td>
+      <td>
+        <button (click)="onDelete(restaurant)" class="delete-button">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</article>

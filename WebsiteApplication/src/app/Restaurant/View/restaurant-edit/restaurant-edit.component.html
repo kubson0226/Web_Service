@@ -1,0 +1,22 @@
+<article *ngIf="restaurant">
+  <header><h2>Edit restaurant</h2></header>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit()" class="container">
+    <div>
+      <label for="name">Name:</label>
+      <input [(ngModel)]="restaurant.name" id="name" name="name"/>
+    </div>
+    <div>
+      <label for="age">Number of sits:</label>
+      <input [(ngModel)]="restaurant.numberOfSits" id="age" name="age"/>
+    </div>
+    <p>
+    <div class="row">
+        <button type="submit">Update</button>
+      <p>
+      <div>
+        <button (click)="form.resetForm(original)" type="button">Reset</button>
+      </div>
+    </div>
+  </form>
+</article>

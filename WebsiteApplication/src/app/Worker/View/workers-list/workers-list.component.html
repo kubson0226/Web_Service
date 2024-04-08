@@ -1,0 +1,23 @@
+<article class="text--justified">
+  <header><h2>Workers</h2></header>
+  <table *ngIf="workers">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let worker of workers.workers" class="city-row">
+      <td class="city-name">{{worker.name}}</td>
+      <td><a [routerLink]="['/workers', worker.id]">View</a></td>
+      <td><a [routerLink]="['/workers', worker.id, 'edit']">Edit</a></td>
+      <td>
+        <button (click)="onDelete(worker)" class="delete-button">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</article>
