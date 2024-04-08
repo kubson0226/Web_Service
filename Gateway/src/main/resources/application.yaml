@@ -1,0 +1,33 @@
+server:
+  port: 8082
+
+isa:
+  gateway:
+    host: http://localhost:8082
+
+  restaurant:
+    url: http://localhost:8080
+  worker:
+    url: http://localhost:8081
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: cors_route
+          uri: http://localhost:4200
+          predicates:
+            - Path=/service/**
+          filters:
+            - RemoveRequestHeader=Host
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+                - PATCH
+              allowedHeaders: '*'
+              maxAge: 30

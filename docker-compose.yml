@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+
+  restaurant-db:
+    image: h2
+    restart: always
+    environment:
+      H2_DB: restaurant_db
+      H2_USER: restaurant_user
+      H2_PASSWORD: restaurant_password
+    ports:
+      - "5432:5432"
+
+  worker-db:
+    image: h2
+    restart: always
+    environment:
+      H2_DB: worker_db
+      H2_USER: worker_user
+      H2_PASSWORD: worker_password
+    ports:
+      - "5433:5432"
+
+  restaurant-service:
+    image: restaurant-service:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2://restaurant-db:5432/restaurant_db
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.h2.Driver
+      SPRING_DATASOURCE_USERNAME: restaurant_user
+      SPRING_DATASOURCE_PASSWORD: restaurant_password
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.h2Dialect
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: true
+      ISA_CITIZEN_SERVICE_URL: http://worker-service:8080/
+    ports:
+      - "8081:8080"
+
+  worker-service:
+    image: worker-service:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2://worker-db:5432/worker_db
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.h2.Driver
+      SPRING_DATASOURCE_USERNAME: worker_user
+      SPRING_DATASOURCE_PASSWORD: worker_password
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.h2Dialect
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: true
+    ports:
+      - "8082:8080"
+
+  gateway:
+    image: gateway:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      ISA_RESTAURANT_URL: http://restaurant-service:8080/
+      ISA_WORKER_URL: http://worker-service:8080/
+      ISA_GATEWAY_HOST: http://gateway:8080/
+
+    ports:
+      - "8083:8080"
+
+  WebsiteApplication:
+    image: city-management-frontend:0.0.1-SNAPSHOT
+    restart: always
+    environment:
+      API_URL: http://gateway:8080/api
+    ports:
+      - "8087:80"
